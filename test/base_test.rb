@@ -54,4 +54,9 @@ describe "version" do
     DataFormatter.format({"a" => {"a" => 1, "b" => 2}}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span> <span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span> <span class=\"curly-bracket\">{</span>\n&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"key string\">&quot;a&quot;</span> <span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span> <span class=\"number\">1</span>,\n&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"key string\">&quot;b&quot;</span> <span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span> <span class=\"number\">2</span>\n<span class=\"curly-bracket\">}</span><span class=\"curly-bracket\">}</span>")
   end
 
+  it "handles complex nested arrays" do
+    data = {"warden.user.user.key"=>["User", ["1"], "$2a$10$KA1Gt0FHACfN7i0t0A7Ly."]}
+    DataFormatter.format(data)
+  end
+
 end

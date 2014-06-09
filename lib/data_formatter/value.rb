@@ -23,7 +23,7 @@ module DataFormatter
         format_array
       else
         raise "ValueFormatter value is of unsupported type: #{ value.class.name }"
-      end
+      end.to_s
     end
 
     protected
