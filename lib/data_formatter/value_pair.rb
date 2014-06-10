@@ -9,7 +9,7 @@ module DataFormatter
     end
 
     def to_s
-      [key.to_s, '<span class="hashrocket">&nbsp;=&gt;&nbsp;</span>', value.to_s].join(" ")
+      [key.to_s, '<span class="hashrocket">&nbsp;=&gt;&nbsp;</span>', value.to_s].join
     end
 
   end
