@@ -43,7 +43,7 @@ describe "version" do
   end
 
   it "formats a string => [1, 'x', nil] hash" do
-    DataFormatter.format({"a" => [1, 'x', nil]}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"bracket\">[</span>\n&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"number\">1</span>,\n&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"string\">&quot;x&quot;</span>,\n&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"nil\">nil</span>\n<span class=\"bracket\">]</span><span class=\"curly-bracket\">}</span>")
+    DataFormatter.format({"a" => [1, 'x', nil]}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"bracket\">[</span>\n&nbsp;&nbsp;<span class=\"number\">1</span>,\n&nbsp;&nbsp;<span class=\"string\">&quot;x&quot;</span>,\n&nbsp;&nbsp;<span class=\"nil\">nil</span>\n<span class=\"bracket\">]</span><span class=\"curly-bracket\">}</span>")
   end
 
   it "formats a string => {'a' => 1} hash" do
@@ -51,7 +51,7 @@ describe "version" do
   end
 
   it "formats a string 'a' => 1, 'b' => 2} hash" do
-    DataFormatter.format({"a" => {"a" => 1, "b" => 2}}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"curly-bracket\">{</span>\n&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"number\">1</span>,\n&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"key string\">&quot;b&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"number\">2</span>\n<span class=\"curly-bracket\">}</span><span class=\"curly-bracket\">}</span>")
+    DataFormatter.format({"a" => {"a" => 1, "b" => 2}}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"curly-bracket\">{</span>\n&nbsp;&nbsp;<span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"number\">1</span>,\n&nbsp;&nbsp;<span class=\"key string\">&quot;b&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"number\">2</span>\n<span class=\"curly-bracket\">}</span><span class=\"curly-bracket\">}</span>")
   end
 
   it "handles complex nested arrays" do
