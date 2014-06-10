@@ -14,11 +14,11 @@ module DataFormatter
     end
 
     def increase
-      self.indent_level += 2
+      self.indent_level += 1
     end
     
     def decrease
-      self.indent_level = [indent_level - 2, 0].max
+      self.indent_level = [indent_level - 1, 0].max
     end
 
     def to_s
