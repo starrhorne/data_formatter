@@ -10,6 +10,7 @@ module DataFormatter
     end
 
     def to_s
+
       return inline if items.length < 2 
 
       [].tap do |output|
@@ -20,7 +21,9 @@ module DataFormatter
         end
         indentation.decrease
         output << indent(close)
-      end.map { |x| x.force_encoding("UTF-8") }.join("\n")
+      end.map do |x| 
+        x.to_s.force_encoding("UTF-8") 
+      end.join("\n")
     end
 
     protected
