@@ -20,7 +20,7 @@ module DataFormatter
         end
         indentation.decrease
         output << indent(close)
-      end.join("\n")
+      end.map { |x| x.force_encoding("UTF-8") }.join("\n")
     end
 
     protected
