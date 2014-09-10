@@ -26,6 +26,10 @@ describe "version" do
     DataFormatter.format({"a" => "b\rc"}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;b\\rc&quot;</span><span class=\"curly-bracket\">}</span>")
   end
 
+  it "escapes tabs in strings" do
+    DataFormatter.format({"a" => "b\tc"}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;b\\tc&quot;</span><span class=\"curly-bracket\">}</span>")
+  end
+
   it "formats a string => number hash" do
     DataFormatter.format({"a" => 2}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"number\">2</span><span class=\"curly-bracket\">}</span>")
   end

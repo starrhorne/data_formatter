@@ -37,7 +37,10 @@ module DataFormatter
       end
 
       def format_string
-        mark_up(data: value.gsub("\n", '\n').gsub("\r", '\r'), surround: '"', kind: "string" )
+        escaped_value = { "\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\s" => '\s', "\t" => '\t' }.inject(value) do |memo, pair| 
+          memo.gsub(pair[0], pair[1])
+        end
+        mark_up(data: escaped_value, surround: '"', kind: "string" )
       end
 
       def format_boolean
