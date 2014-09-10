@@ -18,6 +18,14 @@ describe "version" do
     DataFormatter.format({"a" => '"hi"'}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;\\&quot;hi\\&quot;&quot;</span><span class=\"curly-bracket\">}</span>")
   end
 
+  it "escapes newlines in strings" do
+    DataFormatter.format({"a" => "b\nc"}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;b\\nc&quot;</span><span class=\"curly-bracket\">}</span>")
+  end
+
+  it "escapes carragereturns in strings" do
+    DataFormatter.format({"a" => "b\rc"}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;b\\rc&quot;</span><span class=\"curly-bracket\">}</span>")
+  end
+
   it "formats a string => number hash" do
     DataFormatter.format({"a" => 2}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"number\">2</span><span class=\"curly-bracket\">}</span>")
   end
@@ -57,6 +65,14 @@ describe "version" do
   it "handles complex nested arrays" do
     data = {"warden.user.user.key"=>["User", ["1"], "$2a$10$KA1Gt0FHACfN7i0t0A7Ly."]}
     DataFormatter.format(data)
+  end
+
+  it "Formats a string" do
+    DataFormatter.format("Hello").must_equal("<span class=\"string\">&quot;Hello&quot;</span>")
+  end
+
+  it "Formats an array" do
+    DataFormatter.format(["Hello", "there"]).must_equal("<span class=\"bracket\">[</span>\n&nbsp;&nbsp;<span class=\"string\">&quot;Hello&quot;</span>,\n&nbsp;&nbsp;<span class=\"string\">&quot;there&quot;</span>\n<span class=\"bracket\">]</span>")
   end
 
 end

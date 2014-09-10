@@ -9,7 +9,7 @@ require "data_formatter/tag"
 
 module DataFormatter
   def self.format(data) 
-    HashCollection.new(data: data, indentation: Indentation.new()).to_s
+    Value.new(data: data, indentation: Indentation.new()).to_s
   end
 
   def self.format_lines(data) 

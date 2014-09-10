@@ -37,7 +37,7 @@ module DataFormatter
       end
 
       def format_string
-        mark_up(data: value, surround: '"', kind: "string" )
+        mark_up(data: value.gsub("\n", '\n').gsub("\r", '\r'), surround: '"', kind: "string" )
       end
 
       def format_boolean
