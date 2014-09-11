@@ -13,6 +13,8 @@ module DataFormatter
         format_number
       elsif is?(String)
         format_string
+      elsif is?(Symbol) 
+        format_symbol
       elsif is?(TrueClass, FalseClass)
         format_boolean
       elsif is?(NilClass)
@@ -34,6 +36,10 @@ module DataFormatter
 
       def format_number
         mark_up(data: value, kind: "number" )
+      end
+
+      def format_symbol
+        mark_up(data: value.inspect, kind: "symbol" )
       end
 
       def format_string

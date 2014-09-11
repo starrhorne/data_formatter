@@ -75,6 +75,10 @@ describe "version" do
     DataFormatter.format("Hello").must_equal("<span class=\"string\">&quot;Hello&quot;</span>")
   end
 
+  it "Formats a symbol" do
+    DataFormatter.format(:hello).must_equal("<span class=\"symbol\">:hello</span>")
+  end
+
   it "Formats an array" do
     DataFormatter.format(["Hello", "there"]).must_equal("<span class=\"bracket\">[</span>\n&nbsp;&nbsp;<span class=\"string\">&quot;Hello&quot;</span>,\n&nbsp;&nbsp;<span class=\"string\">&quot;there&quot;</span>\n<span class=\"bracket\">]</span>")
   end
