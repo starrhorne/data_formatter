@@ -37,7 +37,7 @@ module DataFormatter
       end
 
       def format_string
-        escaped_value = { "\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\s" => '\s', "\t" => '\t' }.inject(value) do |memo, pair| 
+        escaped_value = { "\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\t" => '\t' }.inject(value) do |memo, pair| 
           memo.gsub(pair[0], pair[1])
         end
         mark_up(data: escaped_value, surround: '"', kind: "string" )
