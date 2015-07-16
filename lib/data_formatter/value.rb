@@ -1,11 +1,12 @@
 module DataFormatter
   class Value
-    attr_reader :value, :is_key, :indentation
+    attr_reader :value, :is_key, :indentation, :lang
 
     def initialize(args)
       @value = args.fetch(:data)
       @is_key = args.fetch(:is_key, false)
       @indentation = args.fetch(:indentation)
+      @lang = args.fetch(:lang, "ruby")
     end
 
     def to_s
@@ -58,9 +59,9 @@ module DataFormatter
       end
 
       def format_hash
-        HashCollection.new(data: value, indentation: indentation)
+        HashCollection.new(data: value, indentation: indentation, lang: lang)
       end
-      
+
       def format_array
         ArrayCollection.new(data: value, indentation: indentation)
       end
