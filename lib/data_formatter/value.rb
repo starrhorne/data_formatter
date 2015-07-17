@@ -14,7 +14,7 @@ module DataFormatter
         format_number
       elsif is?(String)
         format_string
-      elsif is?(Symbol) 
+      elsif is?(Symbol)
         format_symbol
       elsif is?(TrueClass, FalseClass)
         format_boolean
@@ -44,7 +44,7 @@ module DataFormatter
       end
 
       def format_string
-        escaped_value = { "\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\t" => '\t' }.inject(value) do |memo, pair| 
+        escaped_value = { "\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\t" => '\t' }.inject(value) do |memo, pair|
           memo.gsub(pair[0], pair[1])
         end
         mark_up(data: escaped_value, surround: '"', kind: "string" )
@@ -63,7 +63,7 @@ module DataFormatter
       end
 
       def format_array
-        ArrayCollection.new(data: value, indentation: indentation)
+        ArrayCollection.new(data: value, indentation: indentation, lang: lang)
       end
 
       def mark_up(args)
