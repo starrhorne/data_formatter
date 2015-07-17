@@ -1,11 +1,12 @@
 module DataFormatter
   class Collection
 
-    attr_reader :items, :indentation, :separator
+    attr_reader :items, :indentation, :separator, :lang
 
     def initialize(args)
       @indentation = args.fetch(:indentation)
       @separator = args.fetch(:separator, ",")
+      @lang = args.fetch(:lang, "ruby")
       @items = prepare(args.fetch(:data))
     end
 

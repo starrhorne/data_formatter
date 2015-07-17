@@ -8,11 +8,11 @@ require "data_formatter/value_pair"
 require "data_formatter/tag"
 
 module DataFormatter
-  def self.format(data) 
-    Value.new(data: data, indentation: Indentation.new()).to_s
+  def self.format(data, lang = "ruby")
+    Value.new(data: data, indentation: Indentation.new(), lang: lang).to_s
   end
 
-  def self.format_lines(data) 
-    format(data).strip.split("\n")
+  def self.format_lines(data, lang = "ruby")
+    format(data, lang).strip.split("\n")
   end
 end
