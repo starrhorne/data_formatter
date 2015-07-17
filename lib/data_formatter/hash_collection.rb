@@ -10,7 +10,7 @@ module DataFormatter
     end
 
     def prepare(data)
-      data.map { |k, v| ValuePair.new(key: Value.new(data: k, indentation: indentation, is_key: true), value: Value.new(data: v, indentation: indentation), lang: lang) }
+      data.map { |k, v| ValuePair.new(key: Value.new(data: k, indentation: indentation, is_key: true), value: Value.new(data: v, indentation: indentation, lang: lang), lang: lang) }
     end
 
   end
