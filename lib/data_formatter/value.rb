@@ -55,7 +55,7 @@ module DataFormatter
       end
 
       def format_nil
-        mark_up(data: "nil", kind: "nil" )
+        mark_up(data: (lang == "js" ? "null" : "nil"), kind: "nil" )
       end
 
       def format_hash
