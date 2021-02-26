@@ -1,7 +1,6 @@
-require 'test_helper'
- 
+require "test_helper"
+
 describe "version" do
- 
   it "must be defined" do
     DataFormatter::VERSION.wont_be_nil
   end
@@ -13,7 +12,7 @@ describe "version" do
   it "formats a string => string hash" do
     DataFormatter.format({"a" => "b"}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;b&quot;</span><span class=\"curly-bracket\">}</span>")
   end
-  
+
   it "escapes quotes in strings" do
     DataFormatter.format({"a" => '"hi"'}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;\\&quot;hi\\&quot;&quot;</span><span class=\"curly-bracket\">}</span>")
   end
@@ -55,7 +54,7 @@ describe "version" do
   end
 
   it "formats a string => [1, 'x', nil] hash" do
-    DataFormatter.format({"a" => [1, 'x', nil]}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"bracket\">[</span>\n&nbsp;&nbsp;<span class=\"number\">1</span>,\n&nbsp;&nbsp;<span class=\"string\">&quot;x&quot;</span>,\n&nbsp;&nbsp;<span class=\"nil\">nil</span>\n<span class=\"bracket\">]</span><span class=\"curly-bracket\">}</span>")
+    DataFormatter.format({"a" => [1, "x", nil]}).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"bracket\">[</span>\n&nbsp;&nbsp;<span class=\"number\">1</span>,\n&nbsp;&nbsp;<span class=\"string\">&quot;x&quot;</span>,\n&nbsp;&nbsp;<span class=\"nil\">nil</span>\n<span class=\"bracket\">]</span><span class=\"curly-bracket\">}</span>")
   end
 
   it "formats a string => {'a' => 1} hash" do
@@ -67,7 +66,7 @@ describe "version" do
   end
 
   it "handles complex nested arrays" do
-    data = {"warden.user.user.key"=>["User", ["1"], "$2a$10$KA1Gt0FHACfN7i0t0A7Ly."]}
+    data = {"warden.user.user.key" => ["User", ["1"], "$2a$10$KA1Gt0FHACfN7i0t0A7Ly."]}
     DataFormatter.format(data)
   end
 
@@ -82,5 +81,4 @@ describe "version" do
   it "Formats an array" do
     DataFormatter.format(["Hello", "there"]).must_equal("<span class=\"bracket\">[</span>\n&nbsp;&nbsp;<span class=\"string\">&quot;Hello&quot;</span>,\n&nbsp;&nbsp;<span class=\"string\">&quot;there&quot;</span>\n<span class=\"bracket\">]</span>")
   end
-
 end
