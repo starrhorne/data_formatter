@@ -1,8 +1,7 @@
-require 'rack/utils'
+require "rack/utils"
 
 module DataFormatter
   class Tag
-
     attr_reader :sanitizer, :content, :css_class, :tag_name, :surround
 
     def initialize(args)
@@ -19,29 +18,28 @@ module DataFormatter
 
     protected
 
-      def escaped_surround 
-        "\\" + surround
-      end
+    def escaped_surround
+      "\\" + surround
+    end
 
-      def surrounded_content
-        if surround
-          [surround, content.gsub(surround, escaped_surround), surround].join
-        else
-          content
-        end
+    def surrounded_content
+      if surround
+        [surround, content.gsub(surround, escaped_surround), surround].join
+      else
+        content
       end
+    end
 
-      def safe_content
-        sanitizer.escape_html(surrounded_content)
-      end
+    def safe_content
+      sanitizer.escape_html(surrounded_content)
+    end
 
-      def open_tag
-        %[<#{ tag_name } class="#{ css_class }">]
-      end
+    def open_tag
+      %(<#{tag_name} class="#{css_class}">)
+    end
 
-      def close_tag
-        %[</#{ tag_name }>]
-      end
-
+    def close_tag
+      %(</#{tag_name}>)
+    end
   end
 end

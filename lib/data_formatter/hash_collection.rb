@@ -1,6 +1,5 @@
 module DataFormatter
   class HashCollection < Collection
-
     def open
       @open ||= Tag.new(css_class: "curly-bracket", content: "{")
     end
@@ -12,6 +11,5 @@ module DataFormatter
     def prepare(data)
       data.map { |k, v| ValuePair.new(key: Value.new(data: k, indentation: indentation, is_key: true), value: Value.new(data: v, indentation: indentation, lang: lang), lang: lang) }
     end
-
   end
 end

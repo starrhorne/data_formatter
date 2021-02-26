@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "ZenTest"
   spec.add_development_dependency "autotest-spec"
   spec.add_development_dependency "autotest-suffix"
+  spec.add_development_dependency "standard"
 end

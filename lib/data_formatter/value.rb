@@ -25,50 +25,49 @@ module DataFormatter
       elsif is?(Array)
         format_array
       else
-        raise "ValueFormatter value is of unsupported type: #{ value.class.name }"
+        raise "ValueFormatter value is of unsupported type: #{value.class.name}"
       end.to_s
     end
 
     protected
 
-      def is?(*klass)
-        klass.any? { |k| value.kind_of?(k) }
-      end
+    def is?(*klass)
+      klass.any? { |k| value.is_a?(k) }
+    end
 
-      def format_number
-        mark_up(data: value, kind: "number" )
-      end
+    def format_number
+      mark_up(data: value, kind: "number")
+    end
 
-      def format_symbol
-        mark_up(data: value.inspect, kind: "symbol" )
-      end
+    def format_symbol
+      mark_up(data: value.inspect, kind: "symbol")
+    end
 
-      def format_string
-        escaped_value = { "\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\t" => '\t', "\u0000" => '\u0000' }.inject(value) do |memo, pair|
-          memo.gsub(pair[0], pair[1])
-        end
-        mark_up(data: escaped_value, surround: '"', kind: "string" )
-      end
+    def format_string
+      escaped_value = {"\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\t" => '\t', "\u0000" => '\u0000'}.inject(value) { |memo, pair|
+        memo.gsub(pair[0], pair[1])
+      }
+      mark_up(data: escaped_value, surround: '"', kind: "string")
+    end
 
-      def format_boolean
-        mark_up(data: value ? "true" : "false", kind: "boolean" )
-      end
+    def format_boolean
+      mark_up(data: value ? "true" : "false", kind: "boolean")
+    end
 
-      def format_nil
-        mark_up(data: (lang == "js" ? "null" : "nil"), kind: "nil" )
-      end
+    def format_nil
+      mark_up(data: (lang == "js" ? "null" : "nil"), kind: "nil")
+    end
 
-      def format_hash
-        HashCollection.new(data: value, indentation: indentation, lang: lang)
-      end
+    def format_hash
+      HashCollection.new(data: value, indentation: indentation, lang: lang)
+    end
 
-      def format_array
-        ArrayCollection.new(data: value, indentation: indentation, lang: lang)
-      end
+    def format_array
+      ArrayCollection.new(data: value, indentation: indentation, lang: lang)
+    end
 
-      def mark_up(args)
-        Tag.new(content: args.fetch(:data), surround: args[:surround], css_class: [is_key ? "key" : nil,  args[:kind]]).to_s
-      end
-
+    def mark_up(args)
+      Tag.new(content: args.fetch(:data), surround: args[:surround], css_class: [is_key ? "key" : nil, args[:kind]]).to_s
+    end
   end
 end
