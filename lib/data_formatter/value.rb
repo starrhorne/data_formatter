@@ -47,6 +47,12 @@ module DataFormatter
       escaped_value = {"\a" => '\a', "\b" => '\b', "\r" => '\r', "\n" => '\n', "\t" => '\t', "\u0000" => '\u0000'}.inject(value) { |memo, pair|
         memo.gsub(pair[0], pair[1])
       }
+
+      if escaped_value.start_with?("[LITERAL]")
+        # Return literal value without the hint
+        return mark_up(data: escaped_value[9, escaped_value.length], kind: "literal")
+      end
+
       mark_up(data: escaped_value, surround: '"', kind: "string")
     end
 

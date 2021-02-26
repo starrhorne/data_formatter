@@ -81,4 +81,8 @@ describe "version" do
   it "Formats an array" do
     _(DataFormatter.format(["Hello", "there"])).must_equal("<span class=\"bracket\">[</span>\n&nbsp;&nbsp;<span class=\"string\">&quot;Hello&quot;</span>,\n&nbsp;&nbsp;<span class=\"string\">&quot;there&quot;</span>\n<span class=\"bracket\">]</span>")
   end
+
+  it "Formats a literal" do
+    _(DataFormatter.format("[LITERAL]Hello")).must_equal("<span class=\"literal\">Hello</span>")
+  end
 end
