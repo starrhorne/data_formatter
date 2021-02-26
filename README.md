@@ -1,4 +1,5 @@
 # DataFormatter
+[![Ruby](https://github.com/honeybadger-io/data_formatter/actions/workflows/ruby.yml/badge.svg)](https://github.com/honeybadger-io/data_formatter/actions/workflows/ruby.yml)
 
 TODO: Write a gem description
 
