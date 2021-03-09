@@ -61,7 +61,13 @@ module DataFormatter
     end
 
     def format_nil
-      mark_up(data: (lang == "js" ? "null" : "nil"), kind: "nil")
+      case lang
+      when "ruby"
+        mark_up(data: "nil", kind: "nil")
+      else
+        # Default to JavaScript (PHP also uses null)
+        mark_up(data: "null", kind: "nil")
+      end
     end
 
     def format_hash
