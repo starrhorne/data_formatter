@@ -1,11 +1,21 @@
 module DataFormatter
   class HashCollection < Collection
     def open
-      @open ||= Tag.new(css_class: "curly-bracket", content: "{")
+      @open ||= case lang
+                when "php"
+                  Tag.new(css_class: "bracket", content: "[")
+                else
+                  Tag.new(css_class: "curly-bracket", content: "{")
+                end
     end
 
     def close
-      @close ||= Tag.new(css_class: "curly-bracket", content: "}")
+      @close ||= case lang
+                 when "php"
+                   Tag.new(css_class: "bracket", content: "]")
+                 else
+                   Tag.new(css_class: "curly-bracket", content: "}")
+                 end
     end
 
     def prepare(data)

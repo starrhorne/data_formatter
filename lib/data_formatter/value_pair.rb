@@ -2,10 +2,11 @@ module DataFormatter
   class ValuePair
     attr_reader :key, :value, :lang, :separator
 
-    SEPARATORS = {
+    # Defaults to JavaScript (JSON)
+    SEPARATORS = Hash.new(":").update({
       "ruby" => "=&gt;",
-      "js" => ":"
-    }
+      "php" => "=&gt;"
+    }).freeze
 
     def initialize(args)
       @key = args.fetch(:key)

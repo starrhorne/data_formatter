@@ -85,4 +85,24 @@ describe "version" do
   it "Formats a literal" do
     _(DataFormatter.format("[LITERAL]Hello")).must_equal("<span class=\"literal\">Hello</span>")
   end
+
+  describe "JavaScript-style" do
+    it "formats a string => string hash" do
+      _(DataFormatter.format({"a" => "b"}, "js")).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;:&nbsp;</span><span class=\"string\">&quot;b&quot;</span><span class=\"curly-bracket\">}</span>")
+    end
+
+    it "formats a string => nil hash" do
+      _(DataFormatter.format({"a" => nil}, "js")).must_equal("<span class=\"curly-bracket\">{</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;:&nbsp;</span><span class=\"nil\">null</span><span class=\"curly-bracket\">}</span>")
+    end
+  end
+
+  describe "PHP-style" do
+    it "formats a string => string hash" do
+      _(DataFormatter.format({"a" => "b"}, "php")).must_equal("<span class=\"bracket\">[</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"string\">&quot;b&quot;</span><span class=\"bracket\">]</span>")
+    end
+
+    it "formats a string => nil hash" do
+      _(DataFormatter.format({"a" => nil}, "php")).must_equal("<span class=\"bracket\">[</span><span class=\"key string\">&quot;a&quot;</span><span class=\"hashrocket\">&nbsp;=&gt;&nbsp;</span><span class=\"nil\">null</span><span class=\"bracket\">]</span>")
+    end
+  end
 end
