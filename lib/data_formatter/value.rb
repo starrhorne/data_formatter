@@ -1,12 +1,13 @@
 module DataFormatter
   class Value
-    attr_reader :value, :is_key, :indentation, :lang
+    attr_reader :value, :is_key, :indentation, :lang, :key_name
 
     def initialize(args)
       @value = args.fetch(:data)
       @is_key = args.fetch(:is_key, false)
       @indentation = args.fetch(:indentation)
       @lang = args.fetch(:lang, "ruby")
+      @key_name = args.fetch(:key_name, nil)
     end
 
     def to_s
@@ -79,7 +80,12 @@ module DataFormatter
     end
 
     def mark_up(args)
-      Tag.new(content: args.fetch(:data), surround: args[:surround], css_class: [is_key ? "key" : nil, args[:kind]]).to_s
+      tag_data = if !is_key
+        {key: key_name, value: args.fetch(:data), kind: args[:kind]}.compact
+      else
+        {}
+      end
+      Tag.new(content: args.fetch(:data), surround: args[:surround], css_class: [is_key ? "key" : nil, args[:kind]], tag_data: tag_data).to_s
     end
   end
 end
