@@ -2,7 +2,7 @@ require "rack/utils"
 
 module DataFormatter
   class Tag
-    attr_reader :sanitizer, :content, :css_class, :tag_name, :surround
+    attr_reader :sanitizer, :content, :css_class, :tag_name, :surround, :tag_data
 
     def initialize(args)
       @sanitizer = args.fetch(:sanitizer, Rack::Utils)
@@ -10,6 +10,7 @@ module DataFormatter
       @content = args.fetch(:content)
       @surround = args.fetch(:surround, nil)
       @css_class = Array(args.fetch(:css_class, "")).compact.join(" ")
+      @tag_data = args.fetch(:tag_data, {})
     end
 
     def to_s
@@ -35,7 +36,10 @@ module DataFormatter
     end
 
     def open_tag
-      %(<#{tag_name} class="#{css_class}">)
+      data = if tag_data.any?
+        " " + tag_data.map { |k, v| %(data-#{k.to_s.gsub(/\W/, "-")}="#{v}") }.join(" ")
+      end
+      %(<#{tag_name} class="#{css_class}"#{data}>)
     end
 
     def close_tag
